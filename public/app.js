@@ -116,7 +116,10 @@
     animationFrame = requestAnimationFrame(() => {
       railY = Math.max(153, Math.min(paper.clientHeight - 62, paper.clientHeight * (editing ? .66 : .59)));
       rail.style.top = `${railY}px`;
-      document.querySelector('.ink-window').style.height = `${railY - 20}px`;
+      // The paper continues below the rail when the caret moves to an earlier line.
+      // Leave room for the footer; the rail's own image supplies its occlusion.
+      const writingBottom = Math.max(railY + 32, paper.clientHeight - 56);
+      document.querySelector('.ink-window').style.height = `${writingBottom}px`;
       document.querySelector('.placeholder').style.top = `${railY - 101}px`;
       render();
     });
