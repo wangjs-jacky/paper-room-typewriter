@@ -1,0 +1,14 @@
+{
+  "name": "paper-room-typewriter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "纸间：Blender 分层素材与机械打字机交互网页",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.1"
+  }
+}

@@ -1,0 +1,400 @@
+{
+  "generator": "Blender 4.5.14 LTS",
+  "cameraOffset": [
+    0.0,
+    -6.0,
+    16.0
+  ],
+  "renderEngine": "Cycles",
+  "samples": 40,
+  "assets": {
+    "rail": {
+      "file": "rail.png",
+      "width": 1800,
+      "height": 190,
+      "orthoScale": 9.0,
+      "cameraTarget": [
+        0,
+        0,
+        0.15
+      ],
+      "transparent": true,
+      "collections": [
+        "Rail"
+      ]
+    },
+    "carriage": {
+      "file": "carriage.png",
+      "width": 640,
+      "height": 560,
+      "orthoScale": 1.75,
+      "cameraTarget": [
+        0,
+        0.25,
+        0.35
+      ],
+      "transparent": true,
+      "collections": [
+        "Carriage"
+      ]
+    },
+    "lamp-arm": {
+      "file": "lamp-arm.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "Arm"
+      ]
+    },
+    "lamp-head-on-00": {
+      "file": "lamp-head-on-00.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-off-00": {
+      "file": "lamp-head-off-00.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-on-06": {
+      "file": "lamp-head-on-06.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-off-06": {
+      "file": "lamp-head-off-06.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-on-12": {
+      "file": "lamp-head-on-12.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-off-12": {
+      "file": "lamp-head-off-12.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-on-18": {
+      "file": "lamp-head-on-18.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-off-18": {
+      "file": "lamp-head-off-18.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-on-24": {
+      "file": "lamp-head-on-24.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-off-24": {
+      "file": "lamp-head-off-24.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-on-30": {
+      "file": "lamp-head-on-30.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-off-30": {
+      "file": "lamp-head-off-30.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-on-36": {
+      "file": "lamp-head-on-36.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    },
+    "lamp-head-off-36": {
+      "file": "lamp-head-off-36.png",
+      "width": 900,
+      "height": 900,
+      "orthoScale": 2.8,
+      "cameraTarget": [
+        -0.35,
+        -0.55,
+        0.55
+      ],
+      "transparent": true,
+      "collections": [
+        "LampHead"
+      ]
+    }
+  },
+  "angles": [
+    {
+      "degrees": -18,
+      "lit": true,
+      "file": "lamp-head-on-00.png",
+      "mouth": {
+        "x": 509.6528112888336,
+        "y": 631.7809224128723
+      }
+    },
+    {
+      "degrees": -18,
+      "lit": false,
+      "file": "lamp-head-off-00.png",
+      "mouth": {
+        "x": 509.6528112888336,
+        "y": 631.7809224128723
+      }
+    },
+    {
+      "degrees": -12,
+      "lit": true,
+      "file": "lamp-head-on-06.png",
+      "mouth": {
+        "x": 548.9542007446289,
+        "y": 635.0388944149017
+      }
+    },
+    {
+      "degrees": -12,
+      "lit": false,
+      "file": "lamp-head-off-06.png",
+      "mouth": {
+        "x": 548.9542007446289,
+        "y": 635.0388944149017
+      }
+    },
+    {
+      "degrees": -6,
+      "lit": true,
+      "file": "lamp-head-on-12.png",
+      "mouth": {
+        "x": 588.4040236473083,
+        "y": 634.4324469566345
+      }
+    },
+    {
+      "degrees": -6,
+      "lit": false,
+      "file": "lamp-head-off-12.png",
+      "mouth": {
+        "x": 588.4040236473083,
+        "y": 634.4324469566345
+      }
+    },
+    {
+      "degrees": 0,
+      "lit": true,
+      "file": "lamp-head-on-18.png",
+      "mouth": {
+        "x": 627.5701761245728,
+        "y": 629.9682855606079
+      }
+    },
+    {
+      "degrees": 0,
+      "lit": false,
+      "file": "lamp-head-off-18.png",
+      "mouth": {
+        "x": 627.5701761245728,
+        "y": 629.9682855606079
+      }
+    },
+    {
+      "degrees": 6,
+      "lit": true,
+      "file": "lamp-head-on-24.png",
+      "mouth": {
+        "x": 666.0232901573181,
+        "y": 621.695226430893
+      }
+    },
+    {
+      "degrees": 6,
+      "lit": false,
+      "file": "lamp-head-off-24.png",
+      "mouth": {
+        "x": 666.0232901573181,
+        "y": 621.695226430893
+      }
+    },
+    {
+      "degrees": 12,
+      "lit": true,
+      "file": "lamp-head-on-30.png",
+      "mouth": {
+        "x": 703.342205286026,
+        "y": 609.7040086984634
+      }
+    },
+    {
+      "degrees": 12,
+      "lit": false,
+      "file": "lamp-head-off-30.png",
+      "mouth": {
+        "x": 703.342205286026,
+        "y": 609.7040086984634
+      }
+    },
+    {
+      "degrees": 18,
+      "lit": true,
+      "file": "lamp-head-on-36.png",
+      "mouth": {
+        "x": 739.1179919242859,
+        "y": 594.1259801387787
+      }
+    },
+    {
+      "degrees": 18,
+      "lit": false,
+      "file": "lamp-head-off-36.png",
+      "mouth": {
+        "x": 739.1179919242859,
+        "y": 594.1259801387787
+      }
+    }
+  ],
+  "lampPivot": {
+    "x": 562.5,
+    "y": 267.541766166687,
+    "canvas": 900
+  }
+}
