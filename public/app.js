@@ -246,7 +246,7 @@
   document.addEventListener('selectionchange', () => { if(document.activeElement === writer && !composing) render(); });
   writer.addEventListener('keyup', event => { if (event.key.startsWith('Arrow') || ['Home','End'].includes(event.key)) render(); });
   paper.addEventListener('click', event => {
-    if (event.target.closest('button')) return;
+    if (event.target.closest('button, a')) return;
     stopDemo(); begin({ native:nativeMode });
   });
   $('done').addEventListener('click', done);
@@ -308,7 +308,7 @@
   window.addEventListener('pagehide', () => { try { localStorage.setItem(STORAGE, writer.value); } catch {} });
   if (window.visualViewport) {
     function adjustViewport() {
-      if (window.innerWidth <= 520) app.style.height = `${window.visualViewport.height}px`;
+      if (window.innerWidth <= 520 || document.documentElement.classList.contains('mobile-view')) app.style.height = `${window.visualViewport.height}px`;
       else app.style.removeProperty('height');
     }
     window.visualViewport.addEventListener('resize', adjustViewport); adjustViewport();

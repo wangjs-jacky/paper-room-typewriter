@@ -1,6 +1,6 @@
 # 纸间 · Paper Room
 
-[打开打字机](https://typewriter.paws.rodeo/) · [制作档案](https://typewriter.paws.rodeo/archive) · [视频拆解](https://typewriter.paws.rodeo/breakdown/)
+[打开打字机](https://typewriter.paws.rodeo/) · [手机直达](https://typewriter.paws.rodeo/mobile) · [制作档案](https://typewriter.paws.rodeo/archive) · [视频拆解](https://typewriter.paws.rodeo/breakdown/)
 
 可以真正输入文字的机械打字机网页，使用 Blender 渲染的独立导轨、滑块、灯臂和七档灯头素材。
 
@@ -11,6 +11,12 @@
 - `public/breakdown/`：三步原流程、十二个带时间的关键节点及历史任务草案。
 - `blender/`：原创建模、渲染脚本及资产坐标清单；生成文件写入 `blender/generated/`。
 - `wrangler.jsonc`：Cloudflare Workers Static Assets 部署配置。
+
+## 手机体验
+
+纸面右上角的“手机体验”在电脑上打开二维码和可复制链接；窄屏点击直接进入手机页面。固定入口是 https://typewriter.paws.rodeo/mobile ，经静态重定向进入同一页面的全屏模式，复用已有输入、素材与草稿。草稿属于当前设备和浏览器，不会随二维码传到另一台设备。
+
+二维码是本地生成的 SVG，不调用外部二维码服务。需要更新链接时，同时修改 `public/index.html` 和 `scripts/generate-mobile-qr.mjs`，再执行 `npm run generate:qr`；`npm run dev` 支持 `_redirects`。
 
 ## 本地运行
 

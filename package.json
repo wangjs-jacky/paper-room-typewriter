@@ -6,9 +6,11 @@
   "description": "纸间：Blender 分层素材与机械打字机交互网页",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "generate:qr": "node scripts/generate-mobile-qr.mjs"
   },
   "devDependencies": {
+    "qrcode": "1.5.4",
     "wrangler": "4.151.1"
   }
 }
