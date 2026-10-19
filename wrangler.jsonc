@@ -7,5 +7,12 @@
     "directory": "./public",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "typewriter.paws.rodeo",
+      "zone_name": "paws.rodeo",
+      "custom_domain": true
+    }
+  ]
 }

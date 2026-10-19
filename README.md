@@ -1,6 +1,6 @@
 # 纸间 · Paper Room
 
-[打开打字机](https://paper-room-typewriter.jacky-openbird.workers.dev/) · [制作档案](https://paper-room-typewriter.jacky-openbird.workers.dev/archive) · [视频拆解](https://paper-room-typewriter.jacky-openbird.workers.dev/breakdown/)
+[打开打字机](https://typewriter.paws.rodeo/) · [制作档案](https://typewriter.paws.rodeo/archive) · [视频拆解](https://typewriter.paws.rodeo/breakdown/)
 
 可以真正输入文字的机械打字机网页，使用 Blender 渲染的独立导轨、滑块、灯臂和七档灯头素材。
 
