@@ -1,45 +1,72 @@
+<p align="center">
+  <img src="docs/readme/hero.png" width="100%" alt="纸间 · Paper Room：深橄榄绿背景下的网页打字机写作界面，绿色台灯照亮暖色纸面，金属导轨与滑块停在文字下方">
+</p>
+
 # 纸间 · Paper Room
 
-一台可以真正写字的网页打字机。点一下纸面，滑块就会跟着字走。按回车，纸面向上送进一行，滑块回到行首。左上角的台灯随着光标转向，也可以随手关掉。
+**给念头，留一点空间。**
 
-[在线写字](https://typewriter.paws.rodeo/) · [手机直达](https://typewriter.paws.rodeo/mobile) · [制作档案](https://typewriter.paws.rodeo/archive) · [原片拆解](https://typewriter.paws.rodeo/breakdown/)
+一台可以真正写字的网页打字机——用 **Blender 4.5 分层渲染** 做出烤漆、黄铜与金属的真实器物感，再用 **轻量前端** 驱动滑块跟字、灯头转向与纸面暖光。
 
-<img src="public/archive-assets/materials-board.jpg" width="900" alt="纸间的 Blender 材质板，上方是固定灯臂下三种灯头转角，下方是金属导轨与绿色滑块">
+同时是一次 **Video-to-Repo** 端到端探索：输入一段 22 秒灵感视频，让 AI 在无人中途干预下自主完成拆解、3D 建模渲染与网页交付，产出独立可运行的代码仓库。
 
-## 纸上的细节
+[开始写字 ↗](https://typewriter.paws.rodeo/) · [手机直达](https://typewriter.paws.rodeo/mobile) · [制作档案](https://typewriter.paws.rodeo/archive) · [原片逐帧拆解](https://typewriter.paws.rodeo/breakdown/)
 
-- **字头跟着光标走。** 纸面是一块真正可编辑的文本区。浏览器处理选字、粘贴和输入法，网页用一层镜像文字测出折行后的光标位置，再带动滑块和纸面。点击「中文」可以切换到系统键盘。[输入与机械联动](public/app.js)
-- **灯臂固定，灯头有自己的转轴。** 鼠尾草绿烤漆灯罩、黄铜接头和拉丝金属导轨用 Blender 建模，再从同一机位渲染。导轨、滑块、灯臂和灯头可独立叠放。灯头有七个角度，每个角度分别渲染亮灯和熄灯状态。[建模脚本](blender/build-scene.py) · [图层与转轴](public/assets/manifest.json)
-- **暖光从灯罩开口投到纸面。** 浏览器按光标方向选择最接近的渲染角度，再绕同一枢轴补上小幅转动。光束随灯口的位置变化，边缘在纸面上逐渐淡出。[灯光实现](public/lamp.js)
+## 实机演示
 
-草稿保存在当前浏览器，写完可以导出为 UTF-8 文本。桌面上的「手机体验」可显示二维码，手机打开后进入全屏版，设备间各自保留草稿。
+https://github.com/user-attachments/assets/098d8e58-4f18-4baa-91e8-f3444cb3b28e
+
+## 核心工艺：Blender 分层渲染 × 网页交互
+
+<p align="center">
+  <img src="docs/readme/blender-layers.png" width="100%" alt="纸间三维分层拆解图：Blender 4.5 固定机位渲染 17 张透明图层（7 档灯头转角、固定灯臂、金属导轨与滑块），经黄铜转轴缓动补帧与 Canvas 暖光，合成零 WebGL 的真实网页打字机">
+</p>
+
+- **为什么多一步 Blender？** 纯前端 / SVG 画不出真实的烤漆厚度与金属高光，直接 AI 生图又控不住连续角度和物理联动；固定机位分层渲染兼得 **3D 器物感** 与 **零 WebGL 的轻快加载**。
+- **静态素材怎么动起来？** 底层保留原生 `textarea`（完整支持中文输入法、选字与粘贴），镜像层实时测算折行光标，同步驱动滑块走纸、Web Audio 键击声，以及灯头绕黄铜转轴平滑补帧与纸面暖光。
+- **可复用的交互思路。** 这套「3D 建模 → 分层多状态透明渲染 → 前端锚点连续驱动」机制，同样适用于拉开窗户、推拉抽屉、拨动机械开关等器物级网页交互。
+
+| 核心模块 | 负责内容 | 源码 |
+|---|---|---|
+| 输入与机械联动 | 原生 `textarea`、镜像层测光标、滑块走纸、合成音效与草稿 | [`public/app.js`](public/app.js) |
+| 独立转轴与暖光 | 7 档渲染角度匹配、绕 `lampPivot` 补转、Canvas 柔和光锥 | [`public/lamp.js`](public/lamp.js) |
+| Blender 建模与渲染 | 213 个原创 3D 对象与 Cycles 17 张透明分层导出 | [`blender/build-scene.py`](blender/build-scene.py) · [`blender/render-assets.py`](blender/render-assets.py) |
+| 图层与枢轴清单 | 分层尺寸、灯头转轴与灯口投影坐标 | [`public/assets/manifest.json`](public/assets/manifest.json) |
+
+## 操作速览
+
+| 操作 | 效果 |
+|---|---|
+| 轻点纸面 / 敲击键盘 | 开始写作，支持电脑物理键盘与屏幕按键 |
+| 点击屏幕左下角「中文」 | 切换至系统输入法输入中文 |
+| `Enter` / 方向键 | 自动送纸并滑块回行首；移动光标时字头与台灯同步跟随 |
+| 点击灯罩 / 太阳图标 | 开关台灯（同步切换灯罩内壁与暖光，不丢输入焦点） |
+| 点击「完成」 / 导出 | 收起键盘进入阅读态，或将本页导出为 UTF-8 `.txt` |
+| 点击「手机体验」 | 桌面端扫码直达全屏手机版 |
 
 ## 本地运行
 
-使用 Node.js 22 或更新版本。在工程根目录运行以下命令，再打开终端显示的本地地址。
+需要 Node.js 22+（无需安装 Blender，现成 WebP 分层素材已在 `public/` 中）：
 
 ```sh
 npm ci
 npm run dev
 ```
 
-`public/` 包含可直接由 HTTP 服务托管的 HTML、CSS、JavaScript 与 WebP 素材。本地开发命令也会读取 [`public/_redirects`](public/_redirects)，可直接体验 `/mobile` 路由。
-
-有 Blender 4.5 LTS 时，可在工程根目录重新生成可编辑场景和透明 PNG。生成结果写入 `blender/generated/`，页面已附带可直接使用的 WebP 素材；如需替换网页中的图层素材，请将新生成的 PNG 转为 WebP 并同步更新 `public/assets/`。
+<details>
+<summary>使用 Blender 4.5 LTS 重建 3D 场景与透明素材</summary>
 
 ```sh
 blender --background --python blender/build-scene.py
 blender --background --python blender/build-scene.py -- --render
 ```
 
-[资源导出脚本](blender/render-assets.py) · [手机二维码脚本](scripts/generate-mobile-qr.mjs) · [部署说明](DEPLOYMENT.md)
+输出写入 `blender/generated/`；替换网页素材时将 PNG 转为 WebP 并同步更新 `public/assets/`。发布说明见 [DEPLOYMENT.md](DEPLOYMENT.md)。
 
-## 制作与验证
+</details>
 
-从 22 秒原片提取 12 个带时间的观察节点，先锁定编辑态与收键盘态的构图，再拆出 Blender 部件与网页交互。制作档案可以切换两种状态，查看实际成品与原片的差异。[12 个观察节点](https://typewriter.paws.rodeo/breakdown/) · [原片与成品对照](https://typewriter.paws.rodeo/archive)
+## 制作档案与说明
 
-已有桌面浏览器和窄屏视口的输入、中文组合、灯光、草稿恢复及文本导出记录。手机原生输入法的真机验收和后续方向键修正的浏览器交互回归尚待完成。[验证与发布记录](DEPLOYMENT.md)
-
-## 灵感来源
-
-参考七的三次方的公开视频，视频中提及 Jerry Nkongolo 的创作灵感。本项目独立制作了机械几何、材质和网页交互，原片帧用于研究对照。[原视频](https://www.douyin.com/video/7697547042670791962)
+- **完整记录**：从 22 秒视频拆解到 7 项任务落地的双状态对照见 [在线制作档案](https://typewriter.paws.rodeo/archive) 与 [12 节点原片拆解](https://typewriter.paws.rodeo/breakdown/)。
+- **使用边界**：单页最多 3000 字，草稿仅存在当前浏览器本地，重要文字请及时导出；手机原生输入法的真机验收仍待完成。
+- **灵感致敬**：参考七的三次方[公开视频](https://www.douyin.com/video/7697547042670791962)（提及 Jerry Nkongolo 的创作灵感）；本项目机械几何、材质与网页交互均为独立原创实现。[素材与核验记录](docs/readme/SOURCES.md)
