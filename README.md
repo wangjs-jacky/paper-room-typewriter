@@ -10,7 +10,14 @@
 
 同时是一次 **Video-to-Repo** 端到端探索：输入一段 22 秒灵感视频，让 AI 在无人中途干预下自主完成拆解、3D 建模渲染与网页交付，产出独立可运行的代码仓库。
 
-[开始写字 ↗](https://typewriter.paws.rodeo/) · [手机直达](https://typewriter.paws.rodeo/mobile) · [制作档案](https://typewriter.paws.rodeo/archive) · [原片逐帧拆解](https://typewriter.paws.rodeo/breakdown/)
+[视频拆解报告 V2 ↗](https://typewriter.paws.rodeo/) · [开发者复现教程 V6](https://typewriter.paws.rodeo/tutorial.html) · [开始写字](https://typewriter.paws.rodeo/demo/) · [手机直达](https://typewriter.paws.rodeo/mobile) · [制作档案](https://typewriter.paws.rodeo/archive) · [原片逐帧拆解](https://typewriter.paws.rodeo/breakdown/)
+
+## 已认可报告
+
+正式首页现为视频拆解报告 V2，另有开发者复现教程 V6，分别说明怎样理解原片，以及怎样用 Blender 与 Web 逐步复现。报告保留原认可正文与内嵌图片，发布版仅接通站内导航和效果链接。原打字机体验在 `/demo/`，`/mobile` 继续提供手机入口。
+
+- [视频拆解报告 V2](public/index.html)：12 个截图节点、选帧依据与画面提取内容。
+- [开发者复现教程 V6](public/tutorial.html)：8 个步骤，支持 Human / Agent 阅读切换，含制作源码。
 
 ## 实机演示
 

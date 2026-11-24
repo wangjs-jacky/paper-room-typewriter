@@ -57,9 +57,9 @@
     state(){return {angle,target,lit,loaded:frames.length,pivot:manifest?.lampPivot,caret};}
   };
   new ResizeObserver(schedule).observe(paper);
-  fetch('assets/manifest.json').then(r=>{if(!r.ok)throw Error('Material manifest failed');return r.json();}).then(async data=>{
+  fetch('/assets/manifest.json').then(r=>{if(!r.ok)throw Error('Material manifest failed');return r.json();}).then(async data=>{
     manifest=data;
-    frames=await Promise.all(data.angles.map(async f=>{const image=new Image();image.src='assets/'+f.file.replace('.png','.webp');await image.decode();return {...f,image};}));
+    frames=await Promise.all(data.angles.map(async f=>{const image=new Image();image.src='/assets/'+f.file.replace('.png','.webp');await image.decode();return {...f,image};}));
     lamp.classList.add('assets-ready');schedule();window.dispatchEvent(new Event('paper-lamp-ready'));
   }).catch(error=>{console.error(error);lamp.dataset.assetError='true';});
 })();

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#252820">
+  <meta name="description" content="一盏灯，一张纸，给你的念头留一点空间。可以真正写字的机械打字机。">
+  <title>纸间 · 一台会回应你的打字机</title>
+  <script>if(new URLSearchParams(location.search).get('view')==='mobile')document.documentElement.classList.add('mobile-view');</script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23495442'/%3E%3Ctext x='9' y='29' font-size='29' fill='%23eee7d8' font-family='serif'%3Ep%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/lamp.js" defer></script>
+  <script src="/app.js" defer></script>
+  <script src="/mobile.js" defer></script>
+</head>
+<body>
+  <svg class="icons" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M8 7H5v14h14V7h-3M12 15V2m-4 4 4-4 4 4"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 1v2m0 18v2M1 12h2m18 0h2M4.2 4.2l1.4 1.4m12.8 12.8 1.4 1.4m0-15.6-1.4 1.4M5.6 18.4l-1.4 1.4"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-shift" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8h-6v9H9v-9z"/></symbol>
+    <symbol id="i-delete" viewBox="0 0 24 24"><path d="M9 5h12v14H9l-7-7zM12 9l5 6m0-6-5 6"/></symbol>
+    <symbol id="i-return" viewBox="0 0 24 24"><path d="M20 5v9H4m5-5-5 5 5 5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4m-3 14h2"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  </svg>
+
+  <main class="workspace">
+    <aside class="intro">
+      <a class="wordmark" href="#" aria-label="纸间首页"><span class="brand-symbol">p.</span><span>纸间 <small>PAPER ROOM</small></span></a>
+      <div class="intro-copy"><p class="eyebrow">A LITTLE ROOM FOR YOUR THOUGHTS</p><h1>给念头，<br>留一点空间。</h1><p class="intro-desc">打开灯，把世界调小一点。<br>剩下的，就交给你的指尖。</p><button id="demo" class="demo"><svg><use href="#i-play"/></svg> 看看打字效果 <span>↗</span></button></div>
+      <p class="intro-foot">灵感来自 Jerry Nkongolo 与七的三次方<br><span>一张纸，可以装下很多事。</span><br><a href="/archive">查看制作档案 ↗</a></p>
+    </aside>
+
+    <section class="app" aria-label="纸间打字机">
+      <header class="toolbar">
+        <button id="new-page" class="icon-button" aria-label="换一张新纸" title="换一张新纸"><svg><use href="#i-back"/></svg></button>
+        <button id="done" class="done">完成</button><span class="toolbar-name">纸间</span>
+        <output id="counter" class="counter" aria-label="已输入字数"><i></i><span>0</span> / 3000</output>
+        <button id="export" class="icon-button" aria-label="导出文字" title="导出文字"><svg><use href="#i-share"/></svg></button>
+      </header>
+
+      <div class="paper" id="paper">
+        <div class="paper-grain"></div><div class="paper-top"></div>
+        <a id="mobile-link" class="mobile-link" href="/mobile" aria-haspopup="dialog" aria-controls="mobile-dialog"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>手机体验</span><span aria-hidden="true">↗</span></a>
+        <canvas class="warm-light" id="light-beam" aria-hidden="true"></canvas>
+        <button id="lamp" class="lamp" aria-label="关闭台灯" aria-pressed="true" title="点一下，开关台灯"><img id="lamp-arm" src="/assets/lamp-arm.webp" alt="固定的绿色金属灯臂" draggable="false"><img id="lamp-fallback" src="/assets/lamp-head-on-18.webp" alt="" draggable="false"><canvas id="lamp-head" width="900" height="900" aria-label="独立转向的绿色灯头"></canvas></button>
+        <div class="ink-window"><div class="ink" id="ink" aria-hidden="true"></div><textarea id="writer" aria-label="在纸上写字" inputmode="none" spellcheck="false" autocomplete="off" autocapitalize="sentences" maxlength="6000"></textarea></div>
+        <div class="placeholder" aria-hidden="true"><span>A little room</span><span>for your thoughts.</span></div>
+        
+        <div class="rail" aria-hidden="true">
+          <img class="rail-render" src="/assets/rail.webp" alt="" draggable="false">
+          <div class="carriage" id="carriage"><div class="head" id="head"><img src="/assets/carriage.webp" alt="" draggable="false"></div></div>
+        </div>
+        <div class="paper-footer"><span id="paper-hint">轻点纸张，开始写字</span><button id="light" class="icon-button" aria-label="关闭台灯" aria-pressed="true"><svg><use href="#i-sun"/></svg></button></div>
+        <div class="save-indicator" id="save-indicator" aria-live="polite"></div>
+      </div>
+
+      <div class="keyboard" id="keyboard" aria-label="屏幕键盘" inert>
+        <div class="keys" id="keys"></div>
+        <div class="keyboard-bottom"><button id="native" aria-label="切换到系统键盘以输入中文" title="中文 / 系统键盘"><svg><use href="#i-globe"/></svg><span>中文</span></button><span class="keyboard-note">让想法，慢慢落在纸上</span><button id="sound" class="sound" aria-label="关闭打字音效" aria-pressed="true"><svg><use href="#i-sound"/></svg></button></div>
+      </div>
+      <div class="home-indicator" aria-hidden="true"><i></i></div>
+    </section>
+    <p class="desktop-tip"><kbd>Enter</kbd> 换行 <span>·</span> 支持中文输入 <span>·</span> 草稿自动保存在此设备</p>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog id="new-dialog"><form method="dialog"><span class="dialog-mark">一页新的开始</span><h2>换一张新纸？</h2><p>当前文字会被清空。你也可以先导出，<br>把这一页好好留下。</p><div class="dialog-actions"><button value="cancel">继续写</button><button value="new" class="primary">换新纸</button></div></form></dialog>
+  <dialog id="mobile-dialog" class="mobile-dialog" aria-labelledby="mobile-title" aria-describedby="mobile-description">
+    <form method="dialog" class="mobile-close-form"><button class="mobile-close" aria-label="关闭手机体验窗口" autofocus><svg aria-hidden="true"><use href="#i-close"/></svg></button></form>
+    <span class="dialog-mark">把这一刻，带到手机上</span>
+    <h2 id="mobile-title">在手机上，慢慢写。</h2>
+    <p id="mobile-description">用手机相机扫码，直接打开打字机。</p>
+    <img class="mobile-qr" src="/assets/mobile-qr.svg" width="232" height="232" alt="手机体验二维码，链接也可在下方复制">
+    <label class="mobile-url-label" for="mobile-url">手机直达链接</label>
+    <div class="mobile-url-row"><input id="mobile-url" type="url" value="https://typewriter.paws.rodeo/mobile" readonly spellcheck="false"><button id="copy-mobile-link" type="button">复制链接</button></div>
+    <p id="mobile-copy-status" class="mobile-copy-status" role="status" aria-live="polite"></p>
+    <a class="mobile-open" href="/mobile" target="_blank" rel="noopener">直接打开手机页面 <span aria-hidden="true">↗</span></a>
+    <p class="mobile-note">无需安装 · 草稿保存在写作的设备上</p>
+  </dialog>
+</body>
+</html>

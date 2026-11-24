@@ -1,6 +1,16 @@
 # 部署
 
-## 当前发布
+## 当前发布入口 · 2026-11-25
+
+- 视频拆解报告 V2：https://typewriter.paws.rodeo/
+- 开发者复现教程 V6：https://typewriter.paws.rodeo/tutorial.html
+- 原打字机效果：https://typewriter.paws.rodeo/demo/
+- 手机入口：https://typewriter.paws.rodeo/mobile （跳转至 `/demo/?view=mobile`）
+- 原制作档案与逐帧拆解继续保留在 `/archive` 和 `/breakdown/`。
+
+两份报告来自已认可的 V2 / V6，正文与内嵌图保留。发布版只增加报告间导航，将旧临时链接改为本站路径，并将教程的“效果网页”指向 `/demo/`。Git 历史保留替换前的完整站点；部署时先保存云端基线与本地快照，正式发布回执另记于原任务档案。GitHub 推送仍不会自动部署。
+
+## 原始发布 · 历史记录
 
 - 日期：2026-10-19。
 - GitHub：`wangjs-jacky/paper-room-typewriter`，私有仓库，`main` 分支。
