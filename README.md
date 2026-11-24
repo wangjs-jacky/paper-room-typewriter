@@ -1,60 +1,72 @@
+<p align="center">
+  <img src="docs/readme/hero.png" width="100%" alt="纸间 · Paper Room：深橄榄绿背景下的网页打字机写作界面，绿色台灯照亮暖色纸面，金属导轨与滑块停在文字下方">
+</p>
+
 # 纸间 · Paper Room
 
 **给念头，留一点空间。**
 
-一台可以真正写字的网页打字机。字头跟着光标走，回车送纸，绿色台灯把暖光留在纸上。
+一台可以真正写字的网页打字机——用 **Blender 4.5 分层渲染** 做出烤漆、黄铜与金属的真实器物感，再用 **轻量前端** 驱动滑块跟字、灯头转向与纸面暖光。
 
-[开始写字 ↗](https://typewriter.paws.rodeo/) · [手机体验](https://typewriter.paws.rodeo/mobile)
+同时是一次 **Video-to-Repo** 端到端探索：输入一段 22 秒灵感视频，让 AI 在无人中途干预下自主完成拆解、3D 建模渲染与网页交付，产出独立可运行的代码仓库。
+
+[开始写字 ↗](https://typewriter.paws.rodeo/) · [手机直达](https://typewriter.paws.rodeo/mobile) · [制作档案](https://typewriter.paws.rodeo/archive) · [原片逐帧拆解](https://typewriter.paws.rodeo/breakdown/)
+
+## 实机演示
 
 https://github.com/user-attachments/assets/098d8e58-4f18-4baa-91e8-f3444cb3b28e
 
-## 写下这一页
+## 核心工艺：Blender 分层渲染 × 网页交互
 
-轻点纸面即可开始，支持电脑键盘与屏幕按键。电脑可直接使用中文输入法；点击「中文」可切换到系统键盘。
+<p align="center">
+  <img src="docs/readme/blender-layers.png" width="100%" alt="纸间三维分层拆解图：Blender 4.5 固定机位渲染 17 张透明图层（7 档灯头转角、固定灯臂、金属导轨与滑块），经黄铜转轴缓动补帧与 Canvas 暖光，合成零 WebGL 的真实网页打字机">
+</p>
 
-点击灯罩开关台灯，点击「完成」收起键盘。写完后，点右上角的导出按钮，把这一页保存为 UTF-8 文本。
+- **为什么多一步 Blender？** 纯前端 / SVG 画不出真实的烤漆厚度与金属高光，直接 AI 生图又控不住连续角度和物理联动；固定机位分层渲染兼得 **3D 器物感** 与 **零 WebGL 的轻快加载**。
+- **静态素材怎么动起来？** 底层保留原生 `textarea`（完整支持中文输入法、选字与粘贴），镜像层实时测算折行光标，同步驱动滑块走纸、Web Audio 键击声，以及灯头绕黄铜转轴平滑补帧与纸面暖光。
+- **可复用的交互思路。** 这套「3D 建模 → 分层多状态透明渲染 → 前端锚点连续驱动」机制，同样适用于拉开窗户、推拉抽屉、拨动机械开关等器物级网页交互。
 
-每页最多 3000 个字符。草稿保存在当前浏览器，不跨设备同步；重要文字请及时导出。
+| 核心模块 | 负责内容 | 源码 |
+|---|---|---|
+| 输入与机械联动 | 原生 `textarea`、镜像层测光标、滑块走纸、合成音效与草稿 | [`public/app.js`](public/app.js) |
+| 独立转轴与暖光 | 7 档渲染角度匹配、绕 `lampPivot` 补转、Canvas 柔和光锥 | [`public/lamp.js`](public/lamp.js) |
+| Blender 建模与渲染 | 213 个原创 3D 对象与 Cycles 17 张透明分层导出 | [`blender/build-scene.py`](blender/build-scene.py) · [`blender/render-assets.py`](blender/render-assets.py) |
+| 图层与枢轴清单 | 分层尺寸、灯头转轴与灯口投影坐标 | [`public/assets/manifest.json`](public/assets/manifest.json) |
+
+## 操作速览
+
+| 操作 | 效果 |
+|---|---|
+| 轻点纸面 / 敲击键盘 | 开始写作，支持电脑物理键盘与屏幕按键 |
+| 点击屏幕左下角「中文」 | 切换至系统输入法输入中文 |
+| `Enter` / 方向键 | 自动送纸并滑块回行首；移动光标时字头与台灯同步跟随 |
+| 点击灯罩 / 太阳图标 | 开关台灯（同步切换灯罩内壁与暖光，不丢输入焦点） |
+| 点击「完成」 / 导出 | 收起键盘进入阅读态，或将本页导出为 UTF-8 `.txt` |
+| 点击「手机体验」 | 桌面端扫码直达全屏手机版 |
 
 ## 本地运行
 
-需要 Node.js 22 或更新版本：
+需要 Node.js 22+（无需安装 Blender，现成 WebP 分层素材已在 `public/` 中）：
 
 ```sh
 npm ci
 npm run dev
 ```
 
-打开终端显示的地址即可写字。运行网页无需 Blender，现成素材已包含在 `public/` 中。
-
 <details>
-<summary>制作原理与 Blender 源文件</summary>
-
-文字编辑使用原生 `textarea`。镜像文字层测出光标位置，带动字头、纸面与灯光。
-
-灯罩、黄铜接头、导轨与滑块由 Blender 建模并分层渲染。灯臂固定，灯头独立转向；七个角度各自包含亮灯与熄灯状态。
-
-<img src="public/archive-assets/materials-board.jpg" width="720" alt="Blender 制作的绿色灯头、金属导轨与打字机滑块">
-
-[输入联动](public/app.js) · [灯光实现](public/lamp.js) · [图层清单](public/assets/manifest.json)
-
-使用 Blender 4.5 LTS 重建场景与透明 PNG：
+<summary>使用 Blender 4.5 LTS 重建 3D 场景与透明素材</summary>
 
 ```sh
 blender --background --python blender/build-scene.py
 blender --background --python blender/build-scene.py -- --render
 ```
 
-输出位于 `blender/generated/`。替换网页素材时，将 PNG 转为 WebP，并同步更新 `public/assets/`。
-
-[建模脚本](blender/build-scene.py) · [资源导出](blender/render-assets.py) · [部署说明](DEPLOYMENT.md)
+输出写入 `blender/generated/`；替换网页素材时将 PNG 转为 WebP 并同步更新 `public/assets/`。发布说明见 [DEPLOYMENT.md](DEPLOYMENT.md)。
 
 </details>
 
-## 制作与来源
+## 制作档案与说明
 
-参考七的三次方的公开视频，其中提及 Jerry Nkongolo 的创作灵感。本项目独立制作机械几何、材质与网页交互，原片帧用于研究对照。
-
-[制作档案](https://typewriter.paws.rodeo/archive) · [原片拆解](https://typewriter.paws.rodeo/breakdown/) · [原视频](https://www.douyin.com/video/7697547042670791962)
-
-[素材与验证记录](docs/readme/SOURCES.md)；手机原生输入法的真机验收仍待完成。
+- **完整记录**：从 22 秒视频拆解到 7 项任务落地的双状态对照见 [在线制作档案](https://typewriter.paws.rodeo/archive) 与 [12 节点原片拆解](https://typewriter.paws.rodeo/breakdown/)。
+- **使用边界**：单页最多 3000 字，草稿仅存在当前浏览器本地，重要文字请及时导出；手机原生输入法的真机验收仍待完成。
+- **灵感致敬**：参考七的三次方[公开视频](https://www.douyin.com/video/7697547042670791962)（提及 Jerry Nkongolo 的创作灵感）；本项目机械几何、材质与网页交互均为独立原创实现。[素材与核验记录](docs/readme/SOURCES.md)

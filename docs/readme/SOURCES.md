@@ -2,7 +2,7 @@
 
 ## 视觉方向
 
-延续项目原有的深橄榄绿、暖纸面、宋体和绿色台灯。首页以一处原生视频展示真实写作体验；移除重复的封面与 GIF 展示，把 Blender 制作细节折叠。标题、安装命令和功能说明保留为可搜索、可复制的 Markdown。
+延续项目原有的深橄榄绿、暖纸面、宋体和绿色台灯。采用「极简少字、视觉挑大梁、先体验后工艺」的节奏：顶部以原创主视觉 [hero.png](hero.png) 定调，紧跟一处原生可播 MP4 展示真实操作，正文以基于真实 Blender 透明图层拼装的三联视觉图 [blender-layers.png](blender-layers.png) 直观呈现「Blender 分层渲染 × 网页精细交互」的核心价值。标题、操作表、源码索引与安装命令保持为可搜索、可复制的 Markdown。
 
 首版主视觉（现存档）右侧是当前网页的真实写作态截图；仅在本轮草稿输入示例文字，未改动产品布局或机械状态。截图按打字机容器裁切，排除浏览器扩展浮层。没有生成虚构的产品界面、模型或用户数据。
 
@@ -10,11 +10,12 @@
 
 | 文件 | 用途与来源 |
 | --- | --- |
-| [hero.png](hero.png) | 首版静态主视觉存档，1600 × 960；本轮移出首页 |
+| [hero.png](hero.png) | 首页原创主视觉，1600 × 960；深橄榄绿底配真实写作态截图 |
 | [hero.svg](hero.svg) | 可编辑的主视觉源文件，内嵌本轮截图；字体使用系统宋体与无衬线字体 |
-| [typing.gif](typing.gif) | 首版逐字片段存档，约 9 秒；本轮移出首页 |
+| [blender-layers.png](blender-layers.png) | 三维分层拆解视觉图，1600 × 900；嵌入真实 Blender 透明 WebP 图层，展示分层渲染、黄铜转轴补帧光锥与实机成品 |
+| [typing.gif](typing.gif) | 首版逐字片段存档，约 9 秒；保留存档，首页使用原生 MP4 替代避免重复 |
 | [paper-room-demo.mp4](paper-room-demo.mp4) | 完整真实操作演示，约 23 秒，1110 × 1000，H.264 / yuv420p，编码 30 fps，无音轨 |
-| [materials-board.jpg](../../public/archive-assets/materials-board.jpg) | 项目原有 Blender 材质板，移至制作细节区 |
+| [materials-board.jpg](../../public/archive-assets/materials-board.jpg) | 项目原有 Blender 材质板，保留于制作档案与仓库素材中 |
 
 ## 采集与检查
 
@@ -45,3 +46,10 @@
 
 
 已在真实 GitHub 分支仓库首页核对：正文仅有一个视频播放器，媒体时长 22.566667 秒，实际点击后播放时间前进。390 像素窄屏中播放器也可播放且位于视口内；制作材质板默认折叠。未将本地 HTML 预览当成 GitHub 渲染验证，也未将窄屏仿真当成手机真机验收。
+
+## 视觉瘦身与真实分层图修订
+
+2026-11-24，作者反馈初版纯文字 SVG 流程图字过多、偏文档风；据此大幅精简 README 文案并将视觉重心收束到「Blender 分层渲染 × 网页交互」核心工艺：
+
+- 移除文字偏多的纯 SVG 流程图，改用项目真实的 Blender 透明 WebP 图层与洁净界面截图，合成三联视觉图 [blender-layers.png](blender-layers.png)（1600 × 900，分层透明零件 → 暗底黄铜枢轴与暖光锥 → 可写字实机成品）。
+- 首页保留 [hero.png](hero.png) + 原生可播 MP4 + [blender-layers.png](blender-layers.png) 三处高信息密度视觉锚点，正文精简为 3 条核心工艺说明、4 行源码索引表与 6 行操作速览表。已推送至 `docs/readme-story` 分支，尚未合并 `main`。
